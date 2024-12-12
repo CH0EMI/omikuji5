@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あなたに贈る 言葉おみくじ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: linear-gradient(to bottom right, #ffccf9, #ccf0ff, #ccffd6, #fff7cc);
+      background-size: cover;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #444;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #66cdaa;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #55a68d;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    .actions {
+      margin-top: 20px;
+    }
+    .actions button {
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>あなたに贈る<br>言葉おみくじ</h1>
+  <button id="draw-button" onclick="drawFortune()">おみくじを引く</button>
+  <div class="result" id="result"></div>
+  <div class="actions" id="actions" style="display: none;">
+    <button onclick="retryFortune()">もう一度引く</button>
+    <button onclick="closeFortune()">閉じる</button>
+  </div>
+
+  <script>
+    const fortunes = [
+      {
+        text: "成功は最終目的ではない。失敗も致命的ではない。",
+        explanation: "Try!: 小さな挑戦をしてみよう！結果は気にせず、行動することが大事だよ！"
+      },
+      {
+        text: "困難に直面したときこそ、あなたの本質が問われる。",
+        explanation: "Try!: 今日直面している課題をリストアップして、一つだけでも行動に移してみよう！"
+      },
+      {
+        text: "成長は快適ゾーンの外にある。",
+        explanation: "Try!: 新しいことに少しだけチャレンジしてみて！慣れないことでも、きっと自分を成長させてくれるよ。"
+      },
+      {
+        text: "人生は10%が起こることで、90%がそれにどう反応するかだ。",
+        explanation: "Try!: 今日起きたことをポジティブに捉えて、誰かにシェアしてみよう！"
+      },
+      {
+        text: "明確な目標がない船は、どんな風でも流される。",
+        explanation: "Try!: 簡単な目標をひとつ決めて、誰かに宣言してみよう！"
+      },
+      {
+        text: "未来は今日何をするかにかかっている。",
+        explanation: "Try!: 今日の自分が未来の自分に繋がるから、小さなことでも未来のために動いてみよう！"
+      },
+      {
+        text: "心の目で見ると、本当に大切なものが見えてくる。",
+        explanation: "Try!: 大切な人や物について考えて、その気持ちを誰かと共有してみよう！"
+      },
+      {
+        text: "朝がつらいのは、夜が楽しかった証拠だ。",
+        explanation: "Try!: 昨日の楽しかったことを思い出して、誰かと話してみよう！"
+      },
+      {
+        text: "小さな幸せを見つけたら、それはあなたのポケットにしまっておいて。",
+        explanation: "Try!: 今日見つけた幸せを、メモや写真で記録してみて！後から見返すともっと幸せになれるよ。"
+      },
+      {
+        text: "猫のようにゆっくりとした一日を楽しんで。",
+        explanation: "Try!: ゆったりする時間を作って、好きなことを楽しんでみて！"
+      },
+      {
+        text: "笑顔は魔法みたいなもの—心を明るくする魔法だよ。",
+        explanation: "Try!: 笑顔を誰かに向けてみよう！あなたの笑顔で周りも幸せになるよ。"
+      },
+      {
+        text: "世界を変えるには、少しの勇気と大きな想像力が必要だ。 - スヌーピー",
+        explanation: "Try!: 新しいアイデアを考えて、誰かとシェアしてみよう！その瞬間から変化が始まるかも！"
+      },
+      {
+        text: "大切なのは、完璧じゃなくても頑張ることさ。 - スヌーピー",
+        explanation: "Try!: 今日の「がんばった自分」を振り返って、少し褒めてみよう！それで十分だよ！"
+      },
+      {
+        text: "友達がいると、どんな日も特別になる。 - スヌーピー",
+        explanation: "Try!: 一人の友達にメッセージを送ってみよう！"
+      }
+    ];
+
+    function drawFortune() {
+      const resultDiv = document.getElementById("result");
+      const actionsDiv = document.getElementById("actions");
+      const drawButton = document.getElementById("draw-button");
+
+      // 隠す
+      drawButton.style.display = "none";
+
+      // おみくじを選ぶ
+      const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+
+      // 結果を表示
+      resultDiv.innerHTML = `<p>${fortune.text}</p><p style='font-size: 16px; color: #666;'>${fortune.explanation}</p>`;
+      actionsDiv.style.display = "block";
+    }
+
+    function retryFortune() {
+      location.reload();
+    }
+
+    function closeFortune() {
+      document.body.innerHTML = "<h1>あなたにとって、今日が最高の１日となりますように♡</h1>";
+    }
+  </script>
+</body>
+</html>
